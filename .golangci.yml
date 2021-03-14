@@ -1,0 +1,17 @@
+run:
+  deadline: 5m
+  issues-exit-code: 0
+
+linters:
+  enable:
+    - gocyclo
+    - godox
+    - gofmt
+    - makezero
+    - misspell
+    - unconvert
+
+# golangci.com configuration
+# https://github.com/golangci/golangci/wiki/Configuration
+service:
+  golangci-lint-version: 1.38.0 # use the fixed version to not introduce new linters unexpectedly
