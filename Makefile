@@ -14,7 +14,9 @@ GIT_COMMIT=$$(git rev-parse --short HEAD)
 GIT_DIRTY=$$(test -n "`git status --porcelain`" && echo "+CHANGES" || true)
 GIT_DESCRIBE=$$(git describe --tags --always --match "v*")
 
-GO_LDFLAGS := "-s -w -X $(PROJECT_MODULE).GitCommit=$(GIT_COMMIT)$(GIT_DIRTY) -X $(PROJECT_MODULE).GitDescribe=$(GIT_DESCRIBE)$(GIT_DIRTY)"
+GIT_IMPORT := "$(PROJECT_MODULE)/internal/version"
+
+GO_LDFLAGS := "-s -w -X $(GIT_IMPORT).GitCommit=$(GIT_COMMIT)$(GIT_DIRTY) -X $(GIT_IMPORT).GitDescribe=$(GIT_DESCRIBE)$(GIT_DIRTY)"
 
 GO_TEST_CMD = $(if $(shell command -v gotestsum 2>/dev/null),gotestsum --,go test)
 GO_TEST_PKGS ?= "./..."

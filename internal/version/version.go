@@ -1,4 +1,4 @@
-package authzy
+package version
 
 // Updated by linker flags during build.
 var (
