@@ -6,9 +6,18 @@ import (
 	"os"
 	"time"
 
+	"github.com/mattn/go-isatty"
 	"github.com/rs/zerolog"
 
 	"github.com/zbiljic/authzy/pkg/logger"
+)
+
+var (
+	// noColor defines if the output is colorized or not. It's dynamically set to
+	// false or true based on the stdout's file descriptor referring to a terminal
+	// or not.
+	noColor = os.Getenv("TERM") == "dumb" ||
+		(!isatty.IsTerminal(os.Stdout.Fd()) && !isatty.IsCygwinTerminal(os.Stdout.Fd()))
 )
 
 type zerologLogger struct {
@@ -40,7 +49,11 @@ func NewLogger(logLevel string, jsonEncoder bool) (logger.Logger, error) {
 		zerolog.TimeFieldFormat = logger.RFC3339Z
 		zLogger = zerolog.New(os.Stderr)
 	} else {
-		output := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
+		output := zerolog.ConsoleWriter{
+			Out:        os.Stdout,
+			NoColor:    noColor,
+			TimeFormat: time.RFC3339,
+		}
 		zLogger = zerolog.New(output)
 	}
 

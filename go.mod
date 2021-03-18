@@ -14,6 +14,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/lestrrat-go/jwx v1.1.5
+	github.com/mattn/go-isatty v0.0.12
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/netlify/mailme v1.1.1
 	github.com/oklog/ulid v1.3.1
