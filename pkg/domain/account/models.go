@@ -27,7 +27,7 @@ func (p *ProviderType) UnmarshalJSON(b []byte) error {
 		*p = leaveType
 		return nil
 	}
-	return errors.New("Invalid provider type")
+	return errors.New("invalid provider type")
 }
 
 func (p ProviderType) IsValid() error {
@@ -35,7 +35,7 @@ func (p ProviderType) IsValid() error {
 	case ProviderTypePassword:
 		return nil
 	}
-	return errors.New("Invalid provider type")
+	return errors.New("invalid provider type")
 }
 
 func (p ProviderType) String() string {

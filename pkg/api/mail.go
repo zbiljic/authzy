@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	ErrMaxFrequencyLimit error = errors.New("Frequency limit reached")
+	ErrMaxFrequencyLimit error = errors.New("frequency limit reached")
 )
 
 func (s *server) validateEmail(ctx context.Context, email string) error {

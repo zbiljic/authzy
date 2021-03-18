@@ -54,7 +54,7 @@ func Execute() {
 func execWithConfig(_ *cobra.Command, fn func(conf *config.Config) error) error {
 	conf, err := config.LoadConfig(globalConfig)
 	if err != nil {
-		return fmt.Errorf("Failed to load configuration: %v", err)
+		return fmt.Errorf("failed to load configuration: %v", err)
 	}
 
 	return fn(conf)
