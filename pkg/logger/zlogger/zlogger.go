@@ -9,25 +9,12 @@ import (
 )
 
 func New(config *logger.Config) (logger.Logger, error) {
-	var (
-		logger logger.Logger
-		err    error
-	)
-
 	switch config.Type {
 	case "zap":
-		logger, err = zap.NewLogger(config.Level, config.Format)
-		if err != nil {
-			return nil, err
-		}
+		return zap.NewLogger(config.Level, config.Format)
 	case "zerolog":
-		logger, err = zerolog.NewLogger(config.Level, config.Format)
-		if err != nil {
-			return nil, err
-		}
+		return zerolog.NewLogger(config.Level, config.Format)
 	default:
 		return nil, fmt.Errorf("invalid logger type: %s", config.Type)
 	}
-
-	return logger, nil
 }
