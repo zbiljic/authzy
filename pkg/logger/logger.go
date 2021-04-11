@@ -17,6 +17,12 @@ const (
 	ErrorLevel = "error"
 )
 
+// The log format can either be text or JSON.
+const (
+	JSONFormat = "json"
+	TextFormat = "text"
+)
+
 // Logger defines an interface for logging.
 type Logger interface {
 	// Debug logs a debug message, patterned after log.Print.
@@ -53,7 +59,7 @@ type Fields map[string]interface{}
 
 // Config stores the config for the logger.
 type Config struct {
-	Type        string `json:"type" envconfig:"LOG_TYPE" required:"true" default:"zap"`
-	Level       string `json:"level" envconfig:"LOG_LEVEL" default:"debug"`
-	JSONEncoder bool   `json:"json_encoder" envconfig:"LOG_JSON_ENCODER" split_words:"true" default:"true"`
+	Type   string `json:"type" envconfig:"LOG_TYPE" required:"true" default:"zap"`
+	Level  string `json:"level" envconfig:"LOG_LEVEL" default:"debug"`
+	Format string `json:"format" envconfig:"LOG_FORMAT" default:"json"`
 }

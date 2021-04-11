@@ -16,12 +16,12 @@ func New(config *logger.Config) (logger.Logger, error) {
 
 	switch config.Type {
 	case "zap":
-		logger, err = zap.NewLogger(config.Level, config.JSONEncoder)
+		logger, err = zap.NewLogger(config.Level, config.Format)
 		if err != nil {
 			return nil, err
 		}
 	case "zerolog":
-		logger, err = zerolog.NewLogger(config.Level, config.JSONEncoder)
+		logger, err = zerolog.NewLogger(config.Level, config.Format)
 		if err != nil {
 			return nil, err
 		}

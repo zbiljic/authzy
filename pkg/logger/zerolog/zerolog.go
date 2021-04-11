@@ -39,13 +39,13 @@ func toZerologLevel(level string) zerolog.Level {
 	}
 }
 
-func NewLogger(logLevel string, jsonEncoder bool) (logger.Logger, error) {
+func NewLogger(logLevel, logFormat string) (logger.Logger, error) {
 	level := toZerologLevel(logLevel)
 	zerolog.SetGlobalLevel(level)
 
 	var zLogger zerolog.Logger
 
-	if jsonEncoder {
+	if logger.JSONFormat == logFormat {
 		zerolog.TimeFieldFormat = logger.RFC3339Z
 		zLogger = zerolog.New(os.Stderr)
 	} else {

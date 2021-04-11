@@ -30,7 +30,7 @@ func toZapLevel(level string) zapcore.Level {
 	}
 }
 
-func getEncoder(jsonEncoder bool) zapcore.Encoder {
+func getEncoder(logFormat string) zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
 	// ISO8601-formatted string in UTC/Zulu timezone
 	encoderConfig.EncodeTime = zapcore.TimeEncoder(func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
@@ -38,18 +38,18 @@ func getEncoder(jsonEncoder bool) zapcore.Encoder {
 	})
 	encoderConfig.TimeKey = "time" // This will change the key from 'ts' to 'time'
 
-	if jsonEncoder {
+	if logger.JSONFormat == logFormat {
 		return zapcore.NewJSONEncoder(encoderConfig)
 	}
 
 	return zapcore.NewConsoleEncoder(encoderConfig)
 }
 
-func NewLogger(logLevel string, jsonEncoder bool) (logger.Logger, error) {
+func NewLogger(logLevel, logFormat string) (logger.Logger, error) {
 	cores := []zapcore.Core{}
 
 	level := toZapLevel(logLevel)
-	encoder := getEncoder(jsonEncoder)
+	encoder := getEncoder(logFormat)
 	writer := zapcore.Lock(os.Stdout)
 	core := zapcore.NewCore(encoder, writer, level)
 	cores = append(cores, core)
