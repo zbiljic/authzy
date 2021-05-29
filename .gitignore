@@ -11,4 +11,5 @@
 *.out
 
 # Directories
+**/bin
 **/dist
