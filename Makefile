@@ -118,6 +118,20 @@ dev: ## Build for the current development platform
 	@cp $(PROJECT_ROOT)/$(DEV_TARGET) $(PROJECT_ROOT)/bin/
 	@cp $(PROJECT_ROOT)/$(DEV_TARGET) $(GOPATH)/bin
 
+.PHONY: install
+install: GOOS=$(shell go env GOOS)
+install: GOARCH=$(shell go env GOARCH)
+install: GOPATH=$(shell go env GOPATH)
+install: TARGET=dist/$(GOOS)_$(GOARCH)/$(PROJECT_NAME)
+install: ## Install binary
+	@echo "==> Removing old build..."
+	@rm -f $(PROJECT_ROOT)/$(TARGET)
+	@rm -f $(GOPATH)/bin/$(PROJECT_NAME)
+	@$(MAKE) --no-print-directory \
+		$(TARGET)
+	@mkdir -p $(GOPATH)/bin
+	@cp $(PROJECT_ROOT)/$(TARGET) $(GOPATH)/bin
+
 .PHONY: build
 build: clean $(foreach t,$(ALL_TARGETS),dist/$(t).zip) ## Build release packages
 	@echo "==> Results:"
