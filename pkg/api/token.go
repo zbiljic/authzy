@@ -53,7 +53,7 @@ func (s *server) ResourceOwnerPasswordGrant(w http.ResponseWriter, r *http.Reque
 			WithFields(logger.Fields{"identifier": username}).
 			Warnf("authentication failed: %v", err)
 
-		s.handleError(w, r, oauthError("invalid_grant", "No user found with that email, or password invalid."))
+		s.handleError(w, r, oauthError("invalid_grant", "No user found with that identifier, or password invalid."))
 		return
 	}
 

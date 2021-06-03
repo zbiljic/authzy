@@ -15,7 +15,7 @@ type AccountRepository interface {
 	// FindAll returns all instances of the type.
 	FindAll(ctx context.Context, afterCursor string, limit int) ([]*Account, string, error)
 
-	// Count Returns the number of entities available.
+	// Count returns the number of entities available.
 	Count(ctx context.Context) (int, error)
 
 	// Delete deletes a given entity.

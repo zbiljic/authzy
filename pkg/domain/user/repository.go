@@ -15,7 +15,7 @@ type UserRepository interface {
 	// FindAll returns all instances of the type.
 	FindAll(ctx context.Context, afterCursor string, limit int) ([]*User, string, error)
 
-	// Count Returns the number of entities available.
+	// Count returns the number of entities available.
 	Count(ctx context.Context) (int, error)
 
 	// DeleteByID deletes the entity with the given id.

@@ -57,7 +57,7 @@ func (s *server) getReferrer(r *http.Request) string {
 	return referrer
 }
 
-// validateRedirectURL ensures any redirect URL is from a safe origin
+// validateRedirectURL ensures any redirect URL is from a safe origin.
 func (s *server) validateRedirectURL(r *http.Request, reqref string) string {
 	ctx := r.Context()
 	config := getConfig(ctx)
