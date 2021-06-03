@@ -31,10 +31,7 @@ func createAccounts(t *testing.T, repo account.AccountRepository, userID string,
 
 	ctx := context.Background()
 
-	i := 0
-	for i < count {
-		i++
-
+	for i := 0; i < count; i++ {
 		entity := &account.Account{
 			UserID:      userID,
 			Provider:    account.ProviderTypePassword,

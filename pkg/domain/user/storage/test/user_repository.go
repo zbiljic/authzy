@@ -34,10 +34,7 @@ func createUsers(t *testing.T, repo user.UserRepository, count int) []*user.User
 
 	ctx := context.Background()
 
-	i := 0
-	for i < count {
-		i++
-
+	for i := 0; i < count; i++ {
 		entity := &user.User{
 			ID:                 strconv.FormatInt(int64(i), 10),
 			Email:              fmt.Sprintf("user_%d@test.com", i),

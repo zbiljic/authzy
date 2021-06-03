@@ -31,10 +31,7 @@ func createRefreshTokens(t *testing.T, repo refreshtoken.RefreshTokenRepository,
 
 	ctx := context.Background()
 
-	i := 0
-	for i < count {
-		i++
-
+	for i := 0; i < count; i++ {
 		entity := &refreshtoken.RefreshToken{
 			ID:     ulid.ULID().String(),
 			UserID: userID,
