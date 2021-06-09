@@ -32,11 +32,11 @@ func toZapLevel(level string) zapcore.Level {
 
 func getEncoder(logFormat string) zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
-	// ISO8601-formatted string in UTC/Zulu timezone
-	encoderConfig.EncodeTime = zapcore.TimeEncoder(func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
-		enc.AppendString(t.UTC().Format(logger.RFC3339Z))
-	})
 	encoderConfig.TimeKey = "time" // This will change the key from 'ts' to 'time'
+	// RFC3339-formatted string for time
+	encoderConfig.EncodeTime = zapcore.TimeEncoder(func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
+		enc.AppendString(t.Format(logger.RFC3339Milli))
+	})
 
 	if logger.JSONFormat == logFormat {
 		return zapcore.NewJSONEncoder(encoderConfig)

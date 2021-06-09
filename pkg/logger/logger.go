@@ -3,7 +3,7 @@ package logger
 import "context"
 
 const (
-	RFC3339Z = "2006-01-02T15:04:05.000Z" // time.RFC3339 with Zulu time
+	RFC3339Milli = "2006-01-02T15:04:05.999Z07:00" // time.RFC3339 with millisecond precision
 )
 
 const (

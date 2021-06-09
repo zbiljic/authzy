@@ -46,7 +46,7 @@ func NewLogger(logLevel, logFormat string) (logger.Logger, error) {
 	var zLogger zerolog.Logger
 
 	if logger.JSONFormat == logFormat {
-		zerolog.TimeFieldFormat = logger.RFC3339Z
+		zerolog.TimeFieldFormat = logger.RFC3339Milli
 		zLogger = zerolog.New(os.Stderr)
 	} else {
 		output := zerolog.ConsoleWriter{
