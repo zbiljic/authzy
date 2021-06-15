@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/lestrrat-go/jwx/jwa"
 	"github.com/lestrrat-go/jwx/jwk"
 
 	"github.com/zbiljic/authzy/pkg/api"
@@ -97,6 +98,11 @@ func newTestServer(t *testing.T, o testServerOptions) (*TestServer, *config.Conf
 			}
 
 			err = key.Set(jwk.KeyIDKey, keyID)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			err = key.Set(jwk.AlgorithmKey, jwa.HS256)
 			if err != nil {
 				t.Fatal(err)
 			}
