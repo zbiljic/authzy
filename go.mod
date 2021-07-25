@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/badoux/checkmail v1.2.1
-	github.com/go-playground/validator/v10 v10.6.1
+	github.com/go-playground/validator/v10 v10.7.0
 	github.com/gofrs/uuid v4.0.0+incompatible
 	github.com/gorilla/csrf v1.7.0
 	github.com/gorilla/handlers v1.5.1
