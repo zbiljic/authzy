@@ -31,6 +31,6 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/syndtr/goleveldb v1.0.0
 	go.uber.org/fx v1.13.1
-	go.uber.org/zap v1.17.0
+	go.uber.org/zap v1.18.1
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
 )
